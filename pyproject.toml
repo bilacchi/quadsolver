@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "quadprog"
+version = "0.1.0"
+description = "Quadratic Programming Solver (Jax)"
+authors = ["CMBA"]
+
+packages = [{include = "quadprog"}]
+include = ["quadprog/*.so", "quadprog/*.pyd"]  # Compiled extensions
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^1.26.2"
+
+
+[tool.poetry.group.dev.dependencies]
+cython = "^3.0.5"
+
+[build-system]
+requires = ["poetry-core", "Cython", "setuptools","numpy"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.build]
+script = "build.py"
