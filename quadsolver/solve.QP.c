@@ -253,8 +253,8 @@ int qpgen2_(double *G, double *av, int n,
             // Find the largest step length t1 before dual feasibility is violated.
             // Store in idel the index of the constraint to remove from the active set, if we get that far.
 
-            int t1inf = 1, idel;
-            double t1;
+            int t1inf = 1, idel = 0;
+            double t1 = 0;
             for (int i = 0; i < *nact; i++) {
                 if (iact[i] > meq && ((!reverse_step && rv[i] > 0.) || (reverse_step && rv[i] < 0.))) {
                     double temp = uv[i] / fabs(rv[i]);
@@ -270,7 +270,7 @@ int qpgen2_(double *G, double *av, int n,
             // Store in ztn the rate at which the slack variable is increased. This is used to update the objective value below.
 
             int t2inf = fabs(dot(n, zv, zv)) <= vsmall;
-            double t2, ztn;
+            double t2 = 0, ztn = 0;
             if (!t2inf) {
                 ztn = dot(n, zv, &C[(iadd - 1) * n]);
                 t2 = fabs(slack) / ztn;

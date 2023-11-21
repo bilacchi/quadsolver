@@ -32,17 +32,17 @@ def build_cython_extensions():
     extra_compile_args.append("-UNDEBUG")  # Cython disables asserts by default.
     # Relative to project root director
     include_dirs = [
-        "quadprog/",
+        "quadsolver/",
     ]
 
-    c_files = [str(x) for x in Path("quadprog").rglob("*.c")]
+    c_files = [str(x) for x in Path("quadsolver").rglob("*.c")]
     extensions = [
         Extension(
             # Your .pyx file will be available to cpython at this location.
-            "quadprog.quadprog",
+            "quadsolver.quadprog",
             [
                 # ".c" and ".pyx" source file paths
-                "quadprog/quadprog.pyx",
+                "quadsolver/quadprog.pyx",
                 *c_files,
             ],
             include_dirs=include_dirs,
